@@ -1,0 +1,37 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <functional>
+using namespace std;
+
+class ResourceScheduler {
+private:
+    // Priority queue to manage tasks
+    priority_queue
+        pair<int, string>, 
+       vector<pair<int, string>>, 
+        greater<pair<int, string>>
+    > taskQueue;
+
+public:
+    // Add a task with priority
+    void addTask(int priority, const string& taskName) {
+        taskQueue.push({priority, taskName});
+    }
+
+    // Execute tasks in priority order
+    void executeScheduledTasks() {
+        while (!taskQueue.empty()) {
+            auto [priority, taskName] = taskQueue.top();
+            taskQueue.pop();
+            
+            cout << "Executing Task: " << taskName 
+                      << " (Priority: " << priority << ")\n";
+        }
+    }
+
+    // Check current workload
+    int getCurrentWorkload() {
+        return taskQueue.size();
+    }
+};
